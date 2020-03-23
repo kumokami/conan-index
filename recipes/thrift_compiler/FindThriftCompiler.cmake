@@ -20,7 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-find_program(THRIFT_EXECUTABLE NAMES thrift thrift.exe)
+find_program(THRIFT_EXECUTABLE NAMES thrift thrift.exe NO_DEFAULT_PATH
+    PATHS "${CONAN_BIN_DIRS_THRIFT_COMPILER}"
+)
+
+if(THRIFT_EXECUTABLE)
+    message("Found thrift compiler: ${THRIFT_EXECUTABLE}")
+endif()
 
 function(compile_thrift)
     if(NOT THRIFT_EXECUTABLE)

@@ -7,7 +7,7 @@ _SOURCE_URL='https://mirrors.tuna.tsinghua.edu.cn/apache/thrift/{0}/thrift-{0}.t
 _WIN_BIN_URL='https://mirrors.tuna.tsinghua.edu.cn/apache/thrift/{0}/thrift-{0}.exe'
 
 class ThriftConan(ConanFile):
-    name = "thrift-compiler"
+    name = "thrift_compiler"
     description = "Thrift - Apache Thrift RPC framework"
     topics = ("conan", "thrift", "thrift-compiler", "serialization", "rpc")
     url = "https://github.com/kumokami/conan-index"
@@ -32,8 +32,8 @@ class ThriftConan(ConanFile):
             extracted_folder = "thrift-" + self.version
             os.rename(extracted_folder, self._source_subfolder)
 
-    def requirements(self):
-        self.requires("boost/1.72.0", private=True)
+    def build_requirements(self):
+        self.build_requires("boost/1.72.0")
 
     def configure(self):
         pass
