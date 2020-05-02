@@ -1,0 +1,12 @@
+foreach(ABSL_LIB ${CONAN_LIBS_ABSEIL})
+    find_library(ABSL_${ABSL_LIB}_LIBRARY NAMES ${ABSL_LIB} PATHS ${CONAN_LIB_DIRS_ABSEIL})
+    if(ABSL_${ABSL_LIB}_LIBRARY)
+        list(APPEND ABSL_LIBRARIES ${ABSL_${ABSL_LIB}_LIBRARY})
+    endif()
+endforeach()
+
+foreach(ABLS_TARGET memory str_format inlined_vector optional strings)
+    add_library(absl::${ABLS_TARGET} INTERFACE IMPORTED GLOBAL)
+    set_property(TARGET absl::${ABLS_TARGET} PROPERTY INTERFACE_LINK_LIBRARIES ${ABSL_LIBRARIES})
+    set_property(TARGET absl::${ABLS_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CONAN_INCLUDE_DIRS_ABSEIL})
+endforeach()
