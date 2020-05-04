@@ -96,8 +96,21 @@ class gRPCConan(ConanFile):
         self.copy("LICENSE", dst="licenses", src=self._source_subfolder)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-        self.cpp_info.libs.sort(reverse=True)
+        self.cpp_info.libs = [
+            'grpcpp_channelz',
+            'grpc_unsecure',
+            'grpc_plugin_support',
+            'grpc_cronet',
+            'grpc++_unsecure',
+            'grpc++_reflection',
+            'grpc++_error_details',
+            'grpc++_alts',
+            'grpc++',
+            'grpc',
+            'gpr',
+            'address_sorting', 
+            'upb'
+        ]
 
         self.cpp_info.names["cmake_find_package"] = "grpc"
         self.cpp_info.names["cmake_find_package_multi"] = "grpc"
